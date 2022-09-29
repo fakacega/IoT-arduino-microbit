@@ -1,0 +1,15 @@
+let Umidade = 0
+input.onButtonPressed(Button.A, function () {
+    basic.showNumber(pins.analogReadPin(AnalogPin.P1))
+})
+basic.forever(function () {
+    Umidade = pins.analogReadPin(AnalogPin.P1)
+    if (Umidade > 1000) {
+        basic.showIcon(IconNames.No)
+    } else if (Umidade > 900) {
+        basic.showIcon(IconNames.Happy)
+    } else {
+        basic.showIcon(IconNames.Sad)
+        music.playTone(330, music.beat(BeatFraction.Eighth))
+    }
+})
